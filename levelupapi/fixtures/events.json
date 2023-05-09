@@ -1,0 +1,46 @@
+[
+    {
+        "model": "levelupapi.event",
+        "pk": 1,
+        "fields": {
+            "description": "Join us for a game of Settlers of Catan!",
+            "date": "2023-05-15",
+            "time": "18:00:00",
+            "game_id": 1,
+            "organizer_id": 1
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 2,
+        "fields": {
+            "description": "Join us for a game of Munchkin!",
+            "date": "2023-05-16",
+            "time": "18:00:00",
+            "game_id": 2,
+            "organizer_id": 1
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 3,
+        "fields": {
+            "description": "Join us for a game of Photosynthesis!",
+            "date": "2023-05-17",
+            "time": "18:00:00",
+            "game_id": 3,
+            "organizer_id": 1
+        }
+    },
+    {
+        "model": "levelupapi.event",
+        "pk": 4,
+        "fields": {
+            "description": "Join us for a game of Dungeons and Dragons!",
+            "date": "2023-05-18",
+            "time": "18:00:00",
+            "game_id": 4,
+            "organizer_id": 1
+        }
+    }
+]
