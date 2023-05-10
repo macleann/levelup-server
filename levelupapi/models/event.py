@@ -7,8 +7,8 @@ class Event(models.Model):
     date = models.DateField(auto_now=False, auto_now_add=False)
     time = models.TimeField(auto_now=False, auto_now_add=False)
     organizer = models.ForeignKey("Gamer", on_delete=models.CASCADE, related_name='organized_events')
-    game = models.ForeignKey("Game", on_delete=models.CASCADE, related_name='games')
-    attendees = models.ManyToManyField(Gamer, related_name='events')
+    game = models.ForeignKey("Game", on_delete=models.CASCADE, related_name='events')
+    attendees = models.ManyToManyField(Gamer, related_name='attended_events')
 
     @property
     def joined(self):
