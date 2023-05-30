@@ -20,7 +20,7 @@ class EventView(ViewSet):
         event.organizer = Gamer.objects.get(pk=event.organizer_id)
         event.game = Game.objects.get(pk=event.game_id)
         serializer = EventSerializer(event)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def list(self, request):
         """Handle GET requests to get all events
@@ -39,7 +39,7 @@ class EventView(ViewSet):
             events = events.filter(game_id=request.query_params['game'])
 
         serializer = EventSerializer(events, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def create(self, request):
         """Handle POST operations
@@ -57,7 +57,7 @@ class EventView(ViewSet):
             organizer_id=gamer.id
         )
         serializer = EventSerializer(event)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
         """Handle PUT requests for a event

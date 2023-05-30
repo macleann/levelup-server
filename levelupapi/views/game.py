@@ -6,6 +6,7 @@ from rest_framework import serializers, status
 from levelupapi.models import Game, Gamer, GameType
 
 
+
 class GameView(ViewSet):
     """Level up games view"""
 
@@ -15,9 +16,12 @@ class GameView(ViewSet):
         Returns:
             Response -- JSON serialized game
         """
-        game = Game.objects.get(pk=pk)
-        serializer = GameSerializer(game)
-        return Response(serializer.data)
+        try:
+            game = Game.objects.get(pk=pk)
+            serializer = GameSerializer(game)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except:
+            return Response({"message": "Game not found."}, status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
         """Handle GET requests to get all games
@@ -26,8 +30,11 @@ class GameView(ViewSet):
             Response -- JSON serialized list of games
         """
         games = Game.objects.all()
-        serializer = GameSerializer(games, many=True)
-        return Response(serializer.data)
+        if games:
+            serializer = GameSerializer(games, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "No games found."}, status=status.HTTP_404_NOT_FOUND)
 
     def create(self, request):
         """Handle POST operations
@@ -47,7 +54,7 @@ class GameView(ViewSet):
             game_type=game_type
         )
         serializer = GameSerializer(game)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
         """Handle PUT requests for a game
